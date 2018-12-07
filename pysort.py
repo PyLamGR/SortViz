@@ -1,7 +1,6 @@
 from random import shuffle
 from time import sleep
-#  from display import *
-import display
+from display import *
 import threading
 x = 0
 # bubble Sort
