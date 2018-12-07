@@ -1,23 +1,26 @@
 import sys
-from PyQt5.QtWidgets import QWidget, QApplication, QGroupBox, QVBoxLayout, QHBoxLayout, QDesktopWidget, QPushButton, \
-    QInputDialog, QLineEdit, QGridLayout, QDialog, QMainWindow, QMessageBox ,QAction
-from  PyQt5.QtCore import pyqtSlot
-from PyQt5 import QtCore,QtWidgets
+from PyQt5.QtWidgets import QWidget, QApplication, QGroupBox, QVBoxLayout,\
+                            QHBoxLayout, QDesktopWidget, QPushButton, \
+                            QInputDialog, QLineEdit, QGridLayout, QDialog,\
+                            QMainWindow, QMessageBox, QAction
+from PyQt5.QtCore import pyqtSlot
+from PyQt5 import QtCore, QtWidgets
 import pysort
 import random
 
 # test imports
 from matplotlib import pyplot as plt
 import matplotlib
-from time import sleep
 import warnings
 
 warnings.filterwarnings("ignore", category=matplotlib.cbook.mplDeprecation)
 fig = plt.figure()
 
+
 def randomize():
     global a_list
     a_list = random.sample(range(150), 20)
+
 
 def PopMsg(input):
     msg = QMessageBox()
@@ -25,9 +28,11 @@ def PopMsg(input):
     msg.setWindowTitle("Done!")
     msg.setText("Sorted List: "+str(input))
     msg.exec()
-    
+
+
 a_list = []  # just a random list
-#randomize()
+# randomize()
+
 
 class window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -43,7 +48,7 @@ class window(QtWidgets.QMainWindow):
         self.help_menu = QtWidgets.QMenu('&Help', self)
 
         self.menuBar().addSeparator()
-        
+
         self.menuBar().addMenu(self.help_menu)
         self.help_menu.addAction('&About', self.about)
 
@@ -53,7 +58,7 @@ class window(QtWidgets.QMainWindow):
 
         self.setCentralWidget(self.main_widget)
         self.createGridLayout()
-        
+
         self.windowLayout = QtWidgets.QVBoxLayout(self.main_widget)
         self.windowLayout.addWidget(self.horizontalGroupBox)
 
@@ -61,20 +66,21 @@ class window(QtWidgets.QMainWindow):
 
     def fileQuit(self):
         self.close()
-        
+
     def closeEvent(self, ce):
         self.fileQuit()
         self.main_widget.setFocus()
         self.setCentralWidget(self.main_widget)
         self.createGridLayout()
-        
+
         windowLayout = QVBoxLayout(self.main_widget)
         windowLayout.addWidget(self.horizontalGroupBox)
 
         self.show()
 
     def about(self):
-        QtWidgets.QMessageBox.about(self, "About","""===DA HANDSOMES===\nTaxiarhis\nNikos\nAris""")
+        QtWidgets.QMessageBox.about(
+            self, "About", """===DA HANDSOMES===\nTaxiarhis\nNikos\nAris""")
 
     def createGridLayout(self):
         self.horizontalGroupBox = QGroupBox("Press a button for visualization")
@@ -85,23 +91,28 @@ class window(QtWidgets.QMainWindow):
 
         # List buttons
 
-        randomList = QPushButton("Random List / Clear Plot",self)
+        randomList = QPushButton("Random List / Clear Plot", self)
         randomList.setToolTip("Click to create a random list / Clear Plot")
         buttonCreateYourList = QPushButton("Create List", self)
         buttonCreateYourList.setToolTip("Click to create a custom list")
-        showList = QPushButton("Show current list / Pause", self)                   # added by @Aris
-        showList.setToolTip("Click to show the inputed List! or Pause")      # added by @Aris
+        # added by @Aris
+        showList = QPushButton("Show current list / Pause", self)
+        # added by @Aris
+        showList.setToolTip("Click to show the inputed List! or Pause")
 
         # Sorting Algorithms Buttons
 
         binaryInsertionButton = QPushButton("Binary Insetion Sort", self)
-        binaryInsertionButton.setToolTip("Click for Binary Insertion sort visualization")
+        binaryInsertionButton.setToolTip(
+            "Click for Binary Insertion sort visualization")
         bucketSortButton = QPushButton("Bucket Sort", self)
         bucketSortButton.setToolTip("Click for Bucket sort visualization")
         insertionSortButton = QPushButton("Insertion Sort*", self)
-        insertionSortButton.setToolTip("Click for insertion sort visualization")
+        insertionSortButton.setToolTip(
+            "Click for insertion sort visualization")
         selectionSortButton = QPushButton("Selection Sort*", self)
-        selectionSortButton.setToolTip("Click for Selection sort visualization")
+        selectionSortButton.setToolTip(
+            "Click for Selection sort visualization")
         mergeSortButton = QPushButton("Merge Sort", self)
         mergeSortButton.setToolTip("Click for Merge sort visualization")
         heapsortButton = QPushButton("Heap Sort", self)
@@ -114,7 +125,7 @@ class window(QtWidgets.QMainWindow):
         shellsortButton.setToolTip("Click for shellsort visualization")
         combSortButton = QPushButton("Comb Sort", self)
         combSortButton.setToolTip("Click for Comb sort visualization")
-        countingSortButton = QPushButton("Counting Sort*",self)
+        countingSortButton = QPushButton("Counting Sort*", self)
         countingSortButton.setToolTip("Click for Counting sort visualization")
         radixSortButton = QPushButton("Radix Sort", self)
         radixSortButton.setToolTip("Click for Radix sort visualization")
@@ -159,7 +170,7 @@ class window(QtWidgets.QMainWindow):
         layout.addWidget(bitonicButton, 6, 0)
         layout.addWidget(pancakeButton, 6, 1)
         layout.addWidget(cocktailButton, 6, 2)
-        layout.addWidget(countingSortButton,7,0)
+        layout.addWidget(countingSortButton, 7, 0)
         layout.addWidget(sleepSortButton, 7, 1)
         layout.addWidget(binaryInsertionButton, 7, 2)
 
@@ -196,7 +207,7 @@ class window(QtWidgets.QMainWindow):
 
     @pyqtSlot()
     def InsertionAlgo(self):
-        temp= a_list.copy()
+        temp = a_list.copy()
         temp = pysort.insertion_sort(temp, fig)
         PopMsg(temp)
         print(temp)
@@ -378,17 +389,15 @@ class window(QtWidgets.QMainWindow):
         QMessageBox.about(self, "Your Inputed List", str(a_list))
 
 
-
-
 def run():
     qApp = QtWidgets.QApplication(sys.argv)
     aw = window()
     aw.show()
     sys.exit(qApp.exec_())
-    
+
     #app = QApplication(sys.argv)
     #prog = window()
-    #sys.exit(app.exec_())
+    # sys.exit(app.exec_())
 
 
 run()
