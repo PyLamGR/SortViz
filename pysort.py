@@ -380,7 +380,7 @@ def merge(
 ):
 
     len1 = m - l + 1
-    le2 = r - m
+    len2 = r - m
 
     left = [0] * len1
     right = [0] * len2
