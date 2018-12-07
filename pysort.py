@@ -1,9 +1,11 @@
 from random import shuffle
 from time import sleep
-from display import *
+#  from display import *
+import display
 import threading
 x = 0
 # bubble Sort
+
 
 def bubble_sort(a_list, fig):
     for i in range(1, len(a_list)):
@@ -17,6 +19,8 @@ def bubble_sort(a_list, fig):
     return a_list
 
 # Insertion Sort
+
+
 def insertion_sort(a_list, fig):
     for i in range(1, len(a_list)):
         while i > 0 and a_list[i - 1] > a_list[i]:
@@ -29,6 +33,8 @@ def insertion_sort(a_list, fig):
     return a_list
 
 # Selection Sort
+
+
 def selection_sort(a_list, fig):
     for i in range(len(a_list)):
         min_pos = i
@@ -43,6 +49,8 @@ def selection_sort(a_list, fig):
     return a_list
 
 # Quick Sort
+
+
 def quick_sort_exec(some_list, start, stop, fig):
     if stop - start < 1:
         return some_list
@@ -73,6 +81,8 @@ def quicksort(a_list, fig):
     a_list = quick_sort_exec(a_list, low, high, fig)
     return a_list
 # counting sort
+
+
 def counting_sort(a_list, fig):
 
     # we need three more lists:
@@ -89,7 +99,7 @@ def counting_sort(a_list, fig):
         count[a_list[i]] += 1
 
     for i in range(1, len(count)):
-        count[i] += count[i -1]
+        count[i] += count[i - 1]
 
     for i in range(len(temp)):
         locate = index.index(temp[i])
@@ -103,6 +113,8 @@ def counting_sort(a_list, fig):
     return a_list
 
 # Merge Sort
+
+
 def merge_sort(a_list, fig):
     if len(a_list) > 1:
         mid = len(a_list) // 2
@@ -138,6 +150,8 @@ def merge_sort(a_list, fig):
     return a_list
 
 # Bogosort
+
+
 def inorder(a_list):
     i = 0
     j = len(a_list)
@@ -158,6 +172,8 @@ def bogosort(a_list, fig):
     return a_list
 
 # Comb Sort
+
+
 def comb_sort(a_list, fig):
     gap = len(a_list)
     swaps = True
@@ -179,6 +195,8 @@ def comb_sort(a_list, fig):
     return a_list
 
 # Bitonic Sort
+
+
 def isPowerOf2(num):
     if num == 0:
         return False
@@ -205,10 +223,10 @@ def compAndSwap(
     i,
     j,
     direction,
-    ):
+):
 
     if direction == 1 and a_list[i] > a_list[j] or direction == 0 \
-        and a_list[j] > a_list[i]:
+            and a_list[j] > a_list[i]:
         (a_list[i], a_list[j]) = (a_list[j], a_list[i])
 
 
@@ -230,7 +248,7 @@ def bitonicSort(
     low,
     center,
     direction, fig
-    ):
+):
 
     if center > 1:
         k = center // 2
@@ -246,6 +264,8 @@ def bitonic_sort(a_list, fig):
     return a_list
 
 # Stooge Sort
+
+
 def stooge_sort_run(a_list, low, high, fig):
     if low >= high:
         return a_list
@@ -270,6 +290,7 @@ def stooge_sort(a_list, fig):
     return a_list
 
 # Radix Sort
+
 
 def rcounting_sort(a_list, max_value, get_index):
     counts = [0] * max_value
@@ -330,14 +351,16 @@ def radix_sort(a_list, fig):
     num_digits = get_num_digit(max_value)
 
     for d in range(num_digits):
-        a_list = rcounting_sort(a_list, max_value, lambda a: \
-                               get_digit(a, d + 1))
+        a_list = rcounting_sort(a_list, max_value, lambda a:
+                                get_digit(a, d + 1))
         # display(a_list)
     if flag:
         a_list.remove(10)
     return a_list
 
 # Tim Sort
+
+
 def TimInsertionSort(a_list, left, right, fig):
     for i in range(left + 1, right):
         temp = a_list[i]
@@ -355,7 +378,7 @@ def merge(
     l,
     m,
     r, fig
-    ):
+):
 
     len1 = m - l + 1
     le2 = r - m
@@ -393,6 +416,7 @@ def merge(
         j += 1
     display(a_list, fig)
 
+
 def min(a, b):
     if a < b:
         return a
@@ -424,12 +448,14 @@ def timsort(a_list, fig):
     return a_list
 
 # Binary Insertion Sort
+
+
 def binarySearch(
     a_list,
     val,
     start,
     end,
-    ):
+):
 
     if start == end:
         if a_list[start] > val:
@@ -460,6 +486,8 @@ def binary_insertion_sort(a_list, fig):
     return a_list
 
 # Bucket Sort
+
+
 def numberOfDigits(num):
     mdiv = num // 10
     mmod = mdiv % 10
@@ -476,14 +504,14 @@ def bucket_sort(a_list, fig):
     buckets = []
     for i in range(10):
         buckets.append([])
-    
+
     for i in range(len(a_list)):
         h = numberOfDigits(a_list[i])
         buckets[h].append(a_list[i])
-    #display(buckets)
+    # display(buckets)
     for i in range(10):
         buckets[i] = insertion_sort(buckets[i], fig)
-    #display(buckets)
+    # display(buckets)
     j = 0
     for i in range(10):
         while buckets[i]:
@@ -494,6 +522,8 @@ def bucket_sort(a_list, fig):
     return a_list
 
 # Shell Sort
+
+
 def gapInsertionSort(a_list, start, gap, fig):
     for i in range(start + gap, len(a_list), gap):
 
@@ -518,6 +548,8 @@ def shell_sort(a_list, fig):
     return a_list
 
 # Cocktail Sort
+
+
 def cocktail_sort(a_list, fig):
     swapped = False
     end = 0
@@ -546,6 +578,8 @@ def cocktail_sort(a_list, fig):
     return a_list
 
 # Heap Sort
+
+
 def heapify(a_list, count, fig):
     start = int((count - 2) / 2)
     while start >= 0:
@@ -581,6 +615,8 @@ def heap_sort(a_list, fig):
     return a_list
 
 # Gnome Sort
+
+
 def gnome_sort(a_list, fig):
     i = 0
     while i < len(a_list):
@@ -595,6 +631,8 @@ def gnome_sort(a_list, fig):
     return a_list
 
 # Sleep Sort
+
+
 def sleep_sort(a_list, fig):
 
     def sleepSort(i):
@@ -617,6 +655,8 @@ def sleep_sort(a_list, fig):
     return a_list
 
 # Pancake Sort
+
+
 def pancake_sort(a_list, fig):
     if len(a_list) <= 1:
         return a_list
@@ -632,6 +672,8 @@ def pancake_sort(a_list, fig):
     return a_list
 
 # Cycle Sort
+
+
 def cycle_sort(a_list, fig):
     writes = 0
 
@@ -665,7 +707,3 @@ def cycle_sort(a_list, fig):
             display(a_list, fig)
             writes += 1
     return a_list
-
-
-
-			
