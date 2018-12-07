@@ -359,7 +359,9 @@ class window(QtWidgets.QMainWindow):
 
     @pyqtSlot()
     def createCustomList(self):  # THIS WILL CHANGE AFTER THE REWORK!!!!!
-        text, okPressed = QInputDialog.getText(self, "Custom List", "Type your list(separate numbers with comma):",
+        text, okPressed = QInputDialog.getText(self, "Custom List",
+                                               "Type your list(separate\
+                                               numbers with comma):",
                                                QLineEdit.Normal, "")
         text += ','
         newText = ""
@@ -395,9 +397,9 @@ def run():
     aw.show()
     sys.exit(qApp.exec_())
 
-    #app = QApplication(sys.argv)
-    #prog = window()
-    # sys.exit(app.exec_())
+    #  app = QApplication(sys.argv)
+    #  prog = window()
+    #  sys.exit(app.exec_())
 
 
 run()
